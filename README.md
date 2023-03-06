@@ -10,9 +10,11 @@ Localized cleaner is a script built with Swift. The script will scan the Localiz
 
 # Optional arguments
 
--h or --help      --->  Prints help information about possible arguments and how to use them. 
--d or --delete    --->  Delete unused localized strings found.
--u or --unused    --->  Print all unused localized strings found.
+-h or --help: Prints help information about possible arguments and how to use them.
+
+-d or --delete: Delete unused localized strings found.
+
+-u or --unused: Print all unused localized strings found.
 
 # WIP
 
