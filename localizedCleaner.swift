@@ -1,14 +1,9 @@
 #!/usr/bin/swift
 
-//  Localized Cleaner
-//
-//  Created by Jorge Gomez on 2023-03-16.
-//  Copyright © 2023 Tally Technologies, Inc. All rights reserved.
-
 import Foundation
 
 private let fileManager = FileManager.default
-private let tallyProjectPath = fileManager.currentDirectoryPath + "/Tally"
+private let projectPath = fileManager.currentDirectoryPath + "/rootFolderNameHere"
 private var filesURL: [URL] = []
 private var allLocalizedStrings: [String: Int] = [:]
 private var shouldShowUnusedStrings: Bool {
@@ -52,7 +47,7 @@ private func showHelpInfoIfNeeded() {
 }
 
 private func getLocalizableStrings() -> [String: Int] {
-    let localizedStringsPath = tallyProjectPath + "/Base.lproj/Localizable.strings"
+    let localizedStringsPath = projectPath + "/Base.lproj/Localizable.strings"
     
     let localizedStringsUrl = URL(fileURLWithPath: localizedStringsPath)
     do {
@@ -75,10 +70,10 @@ private func getLocalizableStrings() -> [String: Int] {
 }
 
 private func findAllSwiftFilePaths() {
-    let tallyProjectURL = URL(fileURLWithPath: tallyProjectPath)
+    let projectURL = URL(fileURLWithPath: projectPath)
     
     do {
-        let allSwiftFilesURLS = try deepSearch(tallyProjectURL)
+        let allSwiftFilesURLS = try deepSearch(projectURL)
         
         if allSwiftFilesURLS.isEmpty {
             print("-> No Swift files found in the path provided. ⛔️\n")
@@ -91,7 +86,6 @@ private func findAllSwiftFilePaths() {
 }
 
 private func findUnsedLocalizedStrings() {
-    // Scan each file in Tally (Swift and Objc files) and update localizedString
     filesURL.forEach { fileURL in
         checkFile(with: fileURL)
     }
